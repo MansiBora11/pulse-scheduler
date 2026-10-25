@@ -1,0 +1,7 @@
+target/
+bin/
+*.jsonl
+.idea/
+.vscode/
+*.iml
+.DS_Store

@@ -1,0 +1,23 @@
+services:
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    command: "-jar DynamoDBLocal.jar -sharedDb -inMemory"
+    working_dir: /home/dynamodblocal
+    ports:
+      - "8000:8000"
+
+  pulse-server:
+    build: .
+    depends_on:
+      - dynamodb
+    environment:
+      PULSE_PORT: "8080"
+      DYNAMO_ENDPOINT: "http://dynamodb:8000"
+      AWS_REGION: "us-east-1"
+      # DynamoDB Local accepts any credentials.
+      AWS_ACCESS_KEY_ID: "local"
+      AWS_SECRET_ACCESS_KEY: "local"
+      PULSE_LEASE_MS: "10000"
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
