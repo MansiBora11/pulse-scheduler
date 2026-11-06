@@ -75,7 +75,6 @@ Lease operations return `409 lease_lost` when the caller no longer holds the lea
 
 ## Results
 
-Fill this table only with numbers you measured, and record the hardware and the date.
 
 | Scenario | Jobs | Workers | Throughput | p99 submit latency | Missing | Duplicates |
 |---|---|---|---|---|---|---|
